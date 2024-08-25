@@ -58,49 +58,64 @@ function MainPage() {
 
   return (
     <>
-
       <Header label={"Kindly provide the details below to access comprehensive information about doctors."}/>
 
-      <div className='p-10'>
-        <form onSubmit={handleSubmit} className='flex'>
-          <Inputbox
-            label="Doctor Name:"
-            name="DrName"
-            value={formData.DrName}
-            onChange={handleInputChange}
-          />
-          <Inputbox
-            label="Firm Name:"
-            name="FirmName"
-            value={formData.FirmName}
-            onChange={handleInputChange}
-          />
-          <Inputbox
-            label="Email:"
-            name="email"
-            value={formData.email}
-            onChange={handleInputChange}
-          />
-          <Inputbox
-            label="City:"
-            name="city"
-            value={formData.city}
-            onChange={handleInputChange}
-          />
-          <Inputbox
-            label="Categories (comma-separated):"
-            name="categories"
-            value={formData.categories}
-            onChange={handleInputChange}
-          />
-          <button type="submit" disabled={loading} className='bg-customColor hover:bg-[#4bd7d2] px-10 shadow-xl text-white font-light text-2xl rounded-lg ml-10'>
-            {loading ? 'Searching...' : 'Search'}
-          </button>
+      <div className='p-4 md:p-10'>
+        <form onSubmit={handleSubmit} className='flex flex-col md:flex-row md:flex-wrap justify-between space-y-4 md:space-y-0'>
+          <div className="w-full md:w-[48%]">
+            <Inputbox
+              label="Doctor Name:"
+              name="DrName"
+              value={formData.DrName}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div className="w-full md:w-[48%]">
+            <Inputbox
+              label="Firm Name:"
+              name="FirmName"
+              value={formData.FirmName}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div className="w-full md:w-[48%]">
+            <Inputbox
+              label="Email:"
+              name="email"
+              value={formData.email}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div className="w-full md:w-[48%]">
+            <Inputbox
+              label="City:"
+              name="city"
+              value={formData.city}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div className="w-full">
+            <Inputbox
+              label="Categories (comma-separated):"
+              name="categories"
+              value={formData.categories}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div className="w-full flex justify-center md:justify-start">
+            <button
+              type="submit"
+              disabled={loading}
+              className='bg-customColor hover:bg-[#4bd7d2] mx-2 px-10 py-2 my-4 shadow-xl text-white font-light text-2xl rounded-lg'
+            >
+              {loading ? 'Searching...' : 'Search'}
+            </button>
+          </div>
         </form>
 
-        {error && <p style={{ color: 'red' }}>{error}</p>}
+        {error && <p className="text-red-500 mt-4">{error}</p>}
 
-        <div className='py-4 bg-customColor text-center mt-10 text-white text-xl rounded-xl '>
+        <div className='py-4 bg-customColor text-center mt-10 text-white text-xl rounded-xl'>
           <h3>Search Results:</h3>
           {resultCount > 0 && (
             <p>Found <strong>{resultCount}</strong> doctor{resultCount > 1 && 's'}.</p>
@@ -113,11 +128,11 @@ function MainPage() {
               if (!doctor.PhoneNumber && !doctor.email) {
                 return null;
               }
-              
+
               return (
                 <Link
                   to={`/doctor/${doctor._id}`}
-                  state={{ doctor }} // Ensure doctor is an object and not an array or other complex structure
+                  state={{ doctor }}
                   key={doctor._id}
                   className="bg-white p-4 rounded-lg shadow-md transition-transform duration-300 transform hover:-translate-y-2 hover:shadow-xl block"
                 >
@@ -131,7 +146,6 @@ function MainPage() {
             })}
           </ul>
         </div>
-       
       </div>
       <Footer/>
     </>

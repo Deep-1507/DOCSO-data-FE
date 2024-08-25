@@ -4,16 +4,7 @@
   }
   
 
-/* Apply transformation and shadow on hover */
-.group:hover {
-    transform: translateY(-10px); /* Move the div up by 10px on hover */
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
-  }
-  
-  /* Ensure you have the transition class defined */
-  .transition-transform {
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-  }
+
 
   .card {
     background-color: #fff;
