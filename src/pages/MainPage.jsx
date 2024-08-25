@@ -37,7 +37,7 @@ function MainPage() {
     const categoriesArray = formData.categories.split(',').map(cat => cat.trim()).filter(cat => cat !== '');
 
     try {
-      const response = await axios.post('http://localhost:3000/search', {
+      const response = await axios.post('https://docso-data-be.vercel.app/search', {
         ...formData,
         categories: categoriesArray,
       }, {
