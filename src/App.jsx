@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import DoctorDetail from './pages/DoctorDetail';
+import MapLocationPicker from './pages/map';
 import MainPage from './pages/MainPage';
 
 const App = () => {
@@ -14,6 +15,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/doctor/:id" element={<DoctorDetail />} />
+        <Route path="/map" element={< MapLocationPicker />} />
       </Routes>
     </Router>
   );
