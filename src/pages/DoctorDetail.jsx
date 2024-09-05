@@ -83,7 +83,7 @@ const DoctorDetail = () => {
 
           <div className="bg-white p-4 md:p-6 rounded-lg shadow-lg">
             <p className="text-gray-700 text-lg"><strong>Qualification:</strong> {doctor.qualification}</p>
-            <p className="text-gray-700 text-lg"><strong>Awards:</strong> {doctor.award_certificate}</p>
+           /* <p className="text-gray-700 text-lg"><strong>Awards:</strong> {doctor.award_certificate}</p>*/
             <p className="text-gray-700 text-lg"><strong>Categories:</strong> {doctor.categories.join(', ')}</p>
           </div>
         </div>

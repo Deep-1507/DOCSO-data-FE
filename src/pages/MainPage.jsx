@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Inputbox from '../components/Inputbox';
@@ -20,6 +20,23 @@ function MainPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [resultCount, setResultCount] = useState(0);
+  const [categoriesList, setCategoriesList] = useState([]);
+
+  useEffect(() => {
+    // Fetch unique categories from the backend
+    const fetchCategories = async () => {
+      try {
+        const response = await axios.get('https://docso-data-be.vercel.app/categories');
+        // Sort the categoriesList in ascending order
+        const sortedCategories = response.data.sort((a, b) => a.localeCompare(b));
+        setCategoriesList(sortedCategories);
+      } catch (err) {
+        console.error('Error fetching categories:', err);
+      }
+    };
+
+    fetchCategories();
+  }, []);
 
   const handleInputChange = (e) => {
     setFormData({
@@ -94,14 +111,24 @@ function MainPage() {
               onChange={handleInputChange}
             />
           </div>
-          <div className="w-full">
-            <Inputbox
-              label="Categories (comma-separated):"
-              name="categories"
-              value={formData.categories}
-              onChange={handleInputChange}
-            />
+          <div className="w-full md:w-[48%]">
+            <div className='relative p-2 transition-transform duration-300 group rounded-lg'>
+              <label htmlFor="categories" className='font-semibold text-lg block mb-1'>Categories</label>
+              <select
+                id="categories"
+                name="categories"
+                value={formData.categories}
+                onChange={handleInputChange}
+                className='border-b-2 border-customColor w-full focus:outline-none'
+              >
+                <option value="">Select a category</option>
+                {categoriesList.map((category, index) => (
+                  <option key={index} value={category}>{category}</option>
+                ))}
+              </select>
+            </div>
           </div>
+
           <div className="w-full flex justify-center md:justify-start">
             <button
               type="submit"
